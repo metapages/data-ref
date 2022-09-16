@@ -102,10 +102,10 @@ serve: _mkcert build
 @_npm_build: _ensure_npm_modules
     mkdir -p dist
     rm -rf dist/*
-    {{tsc}} --noEmit false --project ./tsconfig.npm.json
     OUTDIR=./dist \
     DEPLOY_TARGET=lib \
         deno run --allow-all --unstable {{DENO_SOURCE}}/browser/vite-build.ts
+    {{tsc}} --noEmit false --declaration --emitDeclarationOnly --project ./tsconfig.npm.json
     echo "  ✅ npm build"
 
 # bumps version, commits change, git tags
