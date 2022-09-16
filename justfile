@@ -70,7 +70,7 @@ dev: _mkcert _ensure_npm_modules (_tsc "--build")
 #   - `_githubpages_publish`: publish to github pages
 #   - `_cloudflare_pages_publish`: publish to cloudflare pages
 # Reaction to "publish". On new git version tag: publish code [github pages, cloudflare pages, npm]
-on-tag-version: _fix_git_actions_permission _ensure_npm_modules _ensureGitPorcelain _cloudflare_pages_publish
+on-tag-version: _fix_git_actions_permission _ensure_npm_modules _ensureGitPorcelain _npm_publish
 
 # build the browser app in ./docs (default for github pages)
 _browser_client_build BASE="":
