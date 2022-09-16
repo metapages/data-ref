@@ -141,10 +141,10 @@ export const dataRefToBlob = async (dataRef: DataRef): Promise<Blob> => {
       throw "Cannot crate blob from type=hash";
     case DataRefType.json:
       buffer = Unibabel.utf8ToBuffer(JSON.stringify(dataRef.value));
-      return new Blob([buffer!]);
+      return Promise.resolve(new Blob([buffer!]));
     case DataRefType.utf8:
       buffer = Unibabel.utf8ToBuffer(dataRef.value);
-      return new Blob([buffer!]);
+      return Promise.resolve(new Blob([buffer!]));
     case DataRefType.url:
       buffer = await fetchBlobFromUrl(dataRef.value);
       return new Blob([buffer]);
@@ -152,6 +152,6 @@ export const dataRefToBlob = async (dataRef: DataRef): Promise<Blob> => {
     case DataRefType.base64:
     default:
       buffer = Unibabel.base64ToBuffer(dataRef.value);
-      return new Blob([buffer!]);
+      return Promise.resolve(new Blob([buffer!]));
   }
 };
