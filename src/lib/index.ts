@@ -1,2 +1,2 @@
-export * from "./data-ref-types";
-export * from "./data-ref";
+export * from "./dataref-types";
+export * from "./dataref";

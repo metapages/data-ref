@@ -21,6 +21,7 @@ const packageJson: { name: string; version: string } = JSON.parse(
   fs.readFileSync("./package.json", { encoding: "utf8", flag: "r" })
 );
 
+console.log('DEPLOY_TARGET', DEPLOY_TARGET)
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => ({
   // For serving NOT at the base path e.g. with github pages: https://<user_or_org>.github.io/<repo>/

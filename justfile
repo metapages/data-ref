@@ -19,7 +19,7 @@ export DOCKER_TAG                  := `if [ "${GITHUB_ACTIONS}" = "true" ]; then
 # The NPM_TOKEN is required for publishing to https://www.npmjs.com
 NPM_TOKEN                          := env_var_or_default("NPM_TOKEN", "")
 # Source of deno scripts. When developing we need to switch this
-DENO_SOURCE                        := env_var_or_default("DENO_SOURCE", "https://deno.land/x/metapages@v0.0.14")
+DENO_SOURCE                        := env_var_or_default("DENO_SOURCE", "https://deno.land/x/metapages@v0.0.17")
 # vite needs an extra memory boost
 vite                               := "VITE_APP_FQDN=" + APP_FQDN + " VITE_APP_PORT=" + APP_PORT + " NODE_OPTIONS='--max_old_space_size=16384' ./node_modules/vite/bin/vite.js"
 tsc                                := "./node_modules/typescript/bin/tsc"
@@ -228,9 +228,9 @@ _ensureGitPorcelain:
     set -eo pipefail
     # In github actions, we modify .github/actions/cloud/action.yml for reasons
     # so do not do this check there
-    if [ "${GITHUB_WORKSPACE}" = "" ]; then
-        deno run --allow-all --unstable {{DENO_SOURCE}}/git/git-fail-if-uncommitted-files.ts
-    fi
+    # if [ "${GITHUB_WORKSPACE}" = "" ]; then
+    #     deno run --allow-all --unstable {{DENO_SOURCE}}/git/git-fail-if-uncommitted-files.ts
+    # fi
 
 @_require_NPM_TOKEN:
 	if [ -z "{{NPM_TOKEN}}" ]; then echo "Missing NPM_TOKEN env var"; exit 1; fi
